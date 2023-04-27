@@ -108,3 +108,78 @@ To test the server and client, follow these steps:
 3. In the second terminal, navigate to the directory containing `tcp_client.py` and run the command `python tcp_client.py`. The client should send a message to the server and receive a response.
 
 In this example, the server accepts a client connection, receives data, sends a response, and closes the connection. The client connects to the server, sends a message, receives a response, and closes the connection. The output is displayed in both the server and client terminals.
+
+
+# Python 3 Libraries for TCP Sockets
+
+In Python 3, there are several common libraries for working with TCP sockets. 
+
+1. socket (Python Standard Library): The socket module provides a low-level interface for working with network sockets, including TCP sockets. It's the most commonly used library for this purpose in Python.
+
+Example usage:
+
+```python
+import socket
+
+def main():
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(('example.com', 80))
+    s.send(b'GET / HTTP/1.1\r\nHost: example.com\r\n\r\n')
+    response = s.recv(4096)
+    print(response)
+    s.close()
+
+if __name__ == '__main__':
+    main()
+```
+
+2. asyncio (Python Standard Library): The asyncio module provides asynchronous I/O, event loop, and concurrency support for Python. It includes support for TCP sockets using the asyncio.StreamReader and asyncio.StreamWriter classes.
+
+Example usage:
+
+```python
+import asyncio
+
+async def main():
+    reader, writer = await asyncio.open_connection('example.com', 80)
+    writer.write(b'GET / HTTP/1.1\r\nHost: example.com\r\n\r\n')
+    await writer.drain()
+    response = await reader.read(4096)
+    print(response)
+    writer.close()
+    await writer.wait_closed()
+
+asyncio.run(main())
+```
+
+3. Twisted: Twisted is a popular third-party library for event-driven networking in Python. It provides support for various network protocols, including TCP.
+
+Example usage:
+
+```python
+from twisted.internet import protocol, reactor
+
+class EchoClient(protocol.Protocol):
+    def connectionMade(self):
+        self.transport.write(b'GET / HTTP/1.1\r\nHost: example.com\r\n\r\n')
+
+    def dataReceived(self, data):
+        print(data)
+        self.transport.loseConnection()
+
+class EchoFactory(protocol.ClientFactory):
+    def buildProtocol(self, addr):
+        return EchoClient()
+
+    def clientConnectionFailed(self, connector, reason):
+        print("Connection failed.")
+        reactor.stop()
+
+    def clientConnectionLost(self, connector, reason):
+        print("Connection lost.")
+        reactor.stop()
+
+reactor.connectTCP("example.com", 80, EchoFactory())
+reactor.run()
+```
+
