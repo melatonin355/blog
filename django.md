@@ -51,3 +51,130 @@ project_name/
 |-- .gitignore
 |-- requirements.txt
 ```
+
+
+## Cheatsheet
+
+Django Cheatsheet
+
+1. Installation
+```
+pip install django
+```
+
+2. Create a new Django project
+```
+django-admin startproject project_name
+```
+
+3. Create a new Django app
+```
+python manage.py startapp app_name
+```
+
+4. Run development server
+```
+python manage.py runserver
+```
+
+5. Create a migration
+```
+python manage.py makemigrations app_name
+```
+
+6. Apply migrations
+```
+python manage.py migrate
+```
+
+7. Create a new superuser
+```
+python manage.py createsuperuser
+```
+
+8. Start Django shell
+```
+python manage.py shell
+```
+
+9. Basic Model definition
+```python
+from django.db import models
+
+class ModelName(models.Model):
+    field_name = models.FieldType(options)
+```
+
+10. Basic View definition
+```python
+from django.http import HttpResponse
+
+def view_name(request):
+    return HttpResponse("Hello, World!")
+```
+
+11. Basic URL configuration
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('example/', views.view_name, name='view_name'),
+]
+```
+
+12. Basic Template usage
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ heading }}</h1>
+    <p>{{ content }}</p>
+</body>
+</html>
+```
+
+13. Include app URLs in the project
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('app_name/', include('app_name.urls')),
+]
+```
+
+14. Serving static files in development
+```python
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+
+15. Importing and using Django models
+```python
+from app_name.models import ModelName
+
+# Create a new instance
+instance = ModelName(field_name=value)
+
+# Save the instance
+instance.save()
+
+# Query all instances
+instances = ModelName.objects.all()
+
+# Query instances with filter
+filtered_instances = ModelName.objects.filter(field_name=value)
+
+# Get a single instance by primary key
+instance = ModelName.objects.get(pk=primary_key)
+```
+
+This is a basic cheatsheet for Django. For more detailed information and advanced usage, consult the official Django documentation at https://docs.djangoproject.com/.
