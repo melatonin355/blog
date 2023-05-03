@@ -1,9 +1,7 @@
 # Groovy
 
 
-Sure, I can help you with that!
-
-First, here's a Groovy cheat sheet to help you get started:
+- https://github.com/melatonin355/groovy-hello
 
 ```groovy
 // Comment
