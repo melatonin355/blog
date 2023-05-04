@@ -10,6 +10,7 @@ Todo: curate a list of books
 ## Practial
 
 During my time at Microsoft I built a recommendation system from scratch. That was an awesome experience! The main work was not in the model creation but in the tooling, data processing, model serving, and retraining of models for offline batch use. I became an SME in this area ontop of many other responsibilites. 
+This eventually sparked my interest in big data for healthcare. 
 
 I was living in San Francisco and attended so many meetups where I gobbled up information. If you all get a chance to move to a city where the action is happening for your personal growth.. Do it! It might not be the best ROI but there is nothing like being surrounded by people who are passionate about a topic because it's interesting. 
 
