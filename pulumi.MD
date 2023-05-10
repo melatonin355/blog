@@ -1,3 +1,7 @@
+# Pulumi
+
+- https://www.youtube.com/watch?v=RaoKcJGchKM Chef vs ansible vs puppet vs terraform vs crossplane vs pulumi 
+
 
 Pulumi is an open-source infrastructure as code (IaC) tool that allows you to define and manage your cloud infrastructure using familiar programming languages like Python, JavaScript, and Go. Here are the basic steps to get started:
 
